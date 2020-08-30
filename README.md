@@ -2,6 +2,8 @@
 
 This repo is forked from https://github.com/RyanCavanaugh/project-references-demo.  It is to test project references with webpack, ts-loader and ForkTsCheckerWebpackPlugin.
 
+It could be used as an example of how to use project references with ts-loader, although I would not claim that this is the only or even best way to set up a project.  I like to use yarn workspaces to organise my project and I will create an example showing this, but I would not want to imply that yarn workspaces are a requirement to use project references.
+
 ## Project references
 
 With projectReferences = false the build will fail unless the references are pre-built:
@@ -29,7 +31,7 @@ If an error is introduced in src/index.ts the error not be reported when npx web
 console.log(newZoo[0].namex);
 ```
 
-If an error is introduced in animals/dog.ts the error will be reported when npx webpack is run and lib/animals/dog.ts will not be updated.  I believe this behaviour is expected.  transpileOnly will only affect files processed by directly ts-loader. ts-loader will initiate the build of referenced projects but any errors will be reported despite transpileOnly being set.  I don't consider this to be a bug although documentation would help to avoid confusion.
+If an error is introduced in animals/dog.ts the error will be reported when npx webpack is run and lib/animals/dog.ts will not be updated. transpileOnly will only affect files processed by directly ts-loader. ts-loader will initiate the build of referenced projects but any errors will be reported despite transpileOnly being set. This behaviour is expected.  
 
 ## Project references, transpileOnly & ForkTsCheckerWebpackPlugin
 
@@ -54,7 +56,7 @@ After making changes to files the changes are reflected in the final output and 
 
 ## Summary
 
-This is a limited example but I believe webpack, ts-loader, ForkTsCheckerWebpackPlugin are all behaving as expected with project references.  If someone has a repo with a counter example I would be pleased to take a look.
+This is a limited example but I believe webpack, ts-loader, ForkTsCheckerWebpackPlugin are all behaving as expected with project references.
 
 # Performance
 

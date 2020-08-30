@@ -1,4 +1,8 @@
 {
+  "compilerOptions": {
+    "esModuleInterop": true,
+    "jsx": "react",
+  },
   "files": ["src/index.ts"],
   "references": [
     {

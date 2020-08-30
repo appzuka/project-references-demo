@@ -16,13 +16,15 @@ const busyWork = 100;
 ```
 the generated code will contain around 100 files in 2 layers each with 100 repeated blocks of code (900 lines of code) to give the compiler some work to do.
 
-With webpack in watch mode I run <code>yarn build</code>.  After the initial compile I make a change to <code>zoo/zoo.ts</code>.  Webpack reports 2 compiles (for reasons which are understood).  The first takes 3.2 seconds and the second 0.8s.
+With webpack in watch mode I run <code>yarn build</code>.  After the initial compilation I make a change to <code>zoo/zoo.ts</code>.  Webpack reports 2 compilations (for reasons which are understood).  The first takes 3.2 seconds and the second 0.8s.
+
+This repo contains an additional reference <code>unused</code>.  This project is included as a reference in the root solution file <code>tsconfig.json</code> but is not imported anywhere.  When the projects are rebuilt with <code>tsc -b</code> or with ts-loader with <code>projectReferences</code> set to <code>true</code> the <code>unused</code> project is built and its output will appear in <code>lib</code>.  ts-loader builds the solution in exactly the same way as <code>tsc -b</code>.
 
 I then change the entrypoint in <code>webpack.config.js</code> to point to the compiled javascript:
 ```
   "entry": "src/index.js",
 ```
-I again run webpack in watch mode using ts-loader with <code>projectReferences</code> set to <code>false</code> and in a second shell run <code>tsc -b -w -v</code>.  After the initial compiles I change <code>zoo/zoo.ts</code>.  webpack reports a build time of less than 1 second but this does not include the time it took <code>tsc</code> to rebuild the reference, which I manually timed at around 4 seconds (probably 3.x seconds if you subtract my reaction time.)
+I again run webpack in watch mode using ts-loader with <code>projectReferences</code> set to <code>false</code> and in a second shell run <code>tsc -b -w -v</code>.  After the initial compilation I change <code>zoo/zoo.ts</code>.  webpack reports a build time of less than 1 second but this does not include the time it took <code>tsc</code> to rebuild the reference, which I manually timed at around 4 seconds (probably 3.x seconds if you subtract my reaction time.)
 
 Using babel-loader instead of ts-loader only affects the webpack part of this build, which is already less than 1 second.  Babel-loader does not make it faster.
 

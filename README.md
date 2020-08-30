@@ -2,8 +2,6 @@
 
 This repo is forked from https://github.com/RyanCavanaugh/project-references-demo.  It is to test project references with webpack, ts-loader and ForkTsCheckerWebpackPlugin.
 
-
-
 ## Project references
 
 With projectReferences = false the build will fail unless the references are pre-built:
@@ -68,6 +66,6 @@ If you turn off projectReferences in ts-loader and execute tsc -b -w in a differ
 
 ## Performance Summary
 
-This is a tiny project.  It is possible that with a larger project there will be a significant performance difference, but from this repo ts-loader appears to be behaving as expected.  I will generate more source files to investigate.
+This is a tiny project.  It is possible that with a larger project there will be a significant performance difference, but from this repo ts-loader appears to be behaving as expected.  To see the performance with a large codebase checkout the <code>benchmark</code> branch of this repo.
 
 I have not considered startup time here.  I believe running tsc in a separate process could provide some benefit there for larger projects.
